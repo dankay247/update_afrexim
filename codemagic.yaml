@@ -1,0 +1,33 @@
+workflows:
+  build:
+    name: Build Workflow
+    environment:
+      flutter: stable
+
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+
+      - name: Run tests
+        script: flutter test
+
+      - name: Build APK
+        script: flutter build apk
+
+  build_ipa:
+    name: Build IPA Workflow
+    environment:
+      flutter: stable
+
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+
+      - name: Build IPA
+        script: flutter build ios --no-codesign
+
+      - name: Archive IPA
+        script: flutter build ios --no-codesign --release --archive
+
+      - name: Generate IPA
+        script: flutter build ios --no-codesign --release --export-ipa --export-options-plist=path/to/export_options.plist
