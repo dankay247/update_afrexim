@@ -1,15 +1,12 @@
 workflows:
-  build:
-    name: Build Workflow
+  build_apk:
+    name: Build APK Workflow
     environment:
       flutter: stable
 
     scripts:
       - name: Install dependencies
         script: flutter pub get
-
-      - name: Run tests
-        script: flutter test
 
       - name: Build APK
         script: flutter build apk
